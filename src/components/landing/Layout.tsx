@@ -30,16 +30,14 @@ export default function Layout({ children }: LayoutProps) {
         />
       </div>
 
-      {/* Логотип в шапке */}
-      <header className="fixed top-0 left-0 right-0 z-40 flex items-center px-6 md:px-12 py-3">
-        <div className="flex items-center gap-3">
-          <img
-            src={LOGO_URL}
-            alt="НоваПрофСтрой"
-            className="h-12 w-auto object-contain"
-            style={{ filter: 'brightness(0) invert(1)' }}
-          />
-        </div>
+      {/* Логотип в центре шапки */}
+      <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center py-3">
+        <img
+          src={LOGO_URL}
+          alt="НоваПрофСтрой"
+          className="h-16 w-auto object-contain"
+          style={{ filter: 'brightness(0) invert(1)' }}
+        />
       </header>
 
       <div className="relative z-20 h-full">

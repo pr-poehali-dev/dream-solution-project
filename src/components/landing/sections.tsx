@@ -4,7 +4,7 @@ export const sections = [
   {
     id: 'hero',
     subtitle: <Badge variant="outline" className="text-[#c9a84c] border-[#c9a84c] bg-transparent tracking-widest text-xs uppercase">Строительная компания</Badge>,
-    title: "НоваПрофСтрой",
+    title: "Бетон, который стоит веками.",
     slogan: "Строим надёжно. Делаем на совесть.",
     showButton: true,
     buttonText: 'Получить расчёт',
