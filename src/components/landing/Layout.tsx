@@ -10,14 +10,14 @@ const BG_IMAGE = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af331
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="h-screen overflow-hidden bg-[#0d1117] relative">
+    <div className="h-screen overflow-hidden bg-[#f4f6f9] relative">
       <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${BG_IMAGE})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
-          opacity: 0.22,
+          opacity: 0.07,
         }}
       />
       <div className="absolute inset-0 z-10">
@@ -25,8 +25,8 @@ export default function Layout({ children }: LayoutProps) {
           direction="diagonal"
           speed={0.3}
           squareSize={50}
-          borderColor="#1e2a3a"
-          hoverFillColor="#1a2535"
+          borderColor="#d0d8e4"
+          hoverFillColor="#e2e8f0"
         />
       </div>
 
@@ -36,7 +36,6 @@ export default function Layout({ children }: LayoutProps) {
           src={LOGO_URL}
           alt="НоваПрофСтрой"
           className="h-16 w-auto object-contain"
-          style={{ filter: 'brightness(0) invert(1)' }}
         />
       </header>
 
