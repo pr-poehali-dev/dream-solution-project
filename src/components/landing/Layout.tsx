@@ -6,20 +6,10 @@ interface LayoutProps {
 }
 
 const LOGO_URL = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af33184d7c18/bucket/52fe318b-97a2-4c9d-8cc6-cb8ba6775cfd.jpg"
-const BG_IMAGE = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af33184d7c18/bucket/054e3c59-37d6-4452-b1f2-66c0e4a71455.jpg"
 
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="h-screen overflow-hidden bg-[#f4f6f9] relative">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${BG_IMAGE})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          opacity: 0.07,
-        }}
-      />
       <div className="absolute inset-0 z-10">
         <Squares
           direction="diagonal"
@@ -36,6 +26,7 @@ export default function Layout({ children }: LayoutProps) {
           src={LOGO_URL}
           alt="НоваПрофСтрой"
           className="h-16 w-auto object-contain"
+          style={{ filter: 'brightness(0) invert(1)' }}
         />
       </header>
 
