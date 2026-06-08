@@ -9,22 +9,24 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
   const isHero = id === 'hero'
 
   return (
-    <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24 pt-20 overflow-hidden">
-
+    <section
+      id={id}
+      className={`relative h-screen w-full snap-start overflow-hidden flex flex-col ${isHero ? 'justify-end pb-12 md:pb-16' : 'justify-center pt-20'} p-8 md:p-16 lg:p-24`}
+    >
       {isHero && (
         <>
           <div
             className="absolute inset-0 z-0"
             style={{ backgroundImage: `url(${HERO_BG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
           />
-          <div className="absolute inset-0 z-0 bg-black/62" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
         </>
       )}
 
       <div className="relative z-10">
         {subtitle && (
           <motion.div
-            className="mb-6"
+            className="mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
@@ -34,18 +36,18 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
         )}
 
         <motion.h2
-          className={`font-bold leading-[1.05] tracking-tight max-w-4xl ${isHero ? 'text-white' : 'text-[#1a2540]'}`}
-          style={{ fontSize: isHero ? 'clamp(2.5rem, 7vw, 6rem)' : 'clamp(2rem, 5vw, 5rem)' }}
-          initial={{ opacity: 0, y: 50 }}
+          className={`font-bold leading-[1.05] tracking-tight max-w-4xl ${isHero ? 'text-white' : 'text-[#0f1c2e]'}`}
+          style={{ fontSize: isHero ? 'clamp(2.2rem, 6vw, 5.5rem)' : 'clamp(2rem, 5vw, 5rem)' }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isActive ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55 }}
         >
           {title}
         </motion.h2>
 
         {slogan && (
           <motion.p
-            className="text-[#c9a84c] text-xl md:text-2xl lg:text-3xl font-medium mt-3 tracking-wide"
+            className="text-[#c9a84c] text-lg md:text-xl lg:text-2xl font-medium mt-2 tracking-widest uppercase"
             initial={{ opacity: 0, y: 20 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.15 }}
@@ -56,13 +58,37 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
 
         {content && !services && (
           <motion.p
-            className={`text-lg md:text-xl lg:text-2xl max-w-2xl mt-6 ${isHero ? 'text-white/80' : 'text-slate-600'}`}
-            initial={{ opacity: 0, y: 50 }}
+            className={`text-lg md:text-xl max-w-2xl mt-5 ${isHero ? 'text-white/75' : 'text-[#3a4a60]'}`}
+            initial={{ opacity: 0, y: 40 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {content}
           </motion.p>
+        )}
+
+        {badges && (
+          <motion.div
+            className="mt-8 flex flex-wrap gap-6 md:gap-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isActive ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            {badges.map((badge, i) => (
+              <motion.div
+                key={badge.label}
+                className="flex flex-col items-center gap-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={isActive ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+              >
+                <div className="w-11 h-11 rounded-full border border-[#c9a84c]/70 flex items-center justify-center bg-black/40">
+                  <Icon name={badge.icon} fallback="Star" size={20} className="text-[#c9a84c]" />
+                </div>
+                <span className="text-[#c9a84c] text-[10px] tracking-widest uppercase font-semibold">{badge.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         )}
 
         {services && (
@@ -75,37 +101,13 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
             {services.map((service, i) => (
               <motion.div
                 key={service.label}
-                className="flex flex-col items-start gap-3 p-4 border border-slate-200 rounded-lg hover:border-[#c9a84c] transition-colors bg-white shadow-sm"
+                className="flex flex-col items-start gap-3 p-4 border border-[#1e3050] rounded-lg hover:border-[#c9a84c] transition-colors bg-[#0f1c2e] shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isActive ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
               >
                 <Icon name={service.icon} fallback="Hammer" size={28} className="text-[#c9a84c]" />
-                <span className="text-[#1a2540] text-sm font-medium leading-tight">{service.label}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
-        {badges && (
-          <motion.div
-            className="mt-10 flex flex-wrap gap-6 md:gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isActive ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.35 }}
-          >
-            {badges.map((badge, i) => (
-              <motion.div
-                key={badge.label}
-                className="flex flex-col items-center gap-2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={isActive ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.35 + i * 0.1 }}
-              >
-                <div className="w-12 h-12 rounded-full border border-[#c9a84c]/60 flex items-center justify-center bg-black/30">
-                  <Icon name={badge.icon} fallback="Star" size={22} className="text-[#c9a84c]" />
-                </div>
-                <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-semibold">{badge.label}</span>
+                <span className="text-white text-sm font-medium leading-tight">{service.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -115,13 +117,12 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-10 md:mt-14"
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="mt-8 md:mt-10"
           >
             <Button
-              variant="outline"
               size="lg"
-              className="text-[#c9a84c] bg-transparent border-[#c9a84c] hover:bg-[#c9a84c] hover:text-black transition-colors font-semibold tracking-wide px-8"
+              className="bg-[#c9a84c] text-black hover:bg-[#b8963e] font-bold tracking-wide px-10 shadow-lg"
             >
               {buttonText}
             </Button>

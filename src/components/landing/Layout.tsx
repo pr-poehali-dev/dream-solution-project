@@ -9,18 +9,17 @@ const LOGO_URL = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af331
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="h-screen overflow-hidden bg-[#f4f6f9] relative">
+    <div className="h-screen overflow-hidden bg-[#0a1525] relative">
       <div className="absolute inset-0 z-10">
         <Squares
           direction="diagonal"
           speed={0.3}
           squareSize={50}
-          borderColor="#d0d8e4"
-          hoverFillColor="#e2e8f0"
+          borderColor="#1a2d45"
+          hoverFillColor="#1e3355"
         />
       </div>
 
-      {/* Логотип в центре шапки */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-center py-3">
         <img
           src={LOGO_URL}
