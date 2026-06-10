@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
+import LeadForm from "@/components/landing/LeadForm"
 import type { SectionProps } from "@/types"
 
 const HERO_BG = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af33184d7c18/bucket/6448acf9-fbd1-4f81-9d9f-1c56f449ea39.jpg"
@@ -132,7 +133,9 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
         </motion.div>
       )}
 
-      {showButton && (
+      {id === 'cta' ? (
+        <LeadForm isActive={isActive} />
+      ) : showButton && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isActive ? { opacity: 1, y: 0 } : {}}
