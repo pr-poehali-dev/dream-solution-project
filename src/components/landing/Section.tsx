@@ -1,13 +1,16 @@
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
 import LeadForm from "@/components/landing/LeadForm"
+import LeadModal from "@/components/landing/LeadModal"
 import type { SectionProps } from "@/types"
 
 const HERO_BG = "https://cdn.poehali.dev/projects/7dc16bde-f398-45a3-961b-af33184d7c18/bucket/6448acf9-fbd1-4f81-9d9f-1c56f449ea39.jpg"
 
 export default function Section({ id, title, subtitle, slogan, content, isActive, showButton, buttonText, services, badges }: SectionProps) {
   const isHero = id === 'hero'
+  const [modalOpen, setModalOpen] = useState(false)
 
   if (isHero) {
     return (
@@ -77,6 +80,7 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
             >
               <Button
                 size="lg"
+                onClick={() => setModalOpen(true)}
                 className="bg-[#c9a84c] text-black hover:bg-[#b8963e] font-bold tracking-wide px-10"
               >
                 {buttonText}
@@ -84,6 +88,8 @@ export default function Section({ id, title, subtitle, slogan, content, isActive
             </motion.div>
           )}
         </div>
+
+        <LeadModal open={modalOpen} onClose={() => setModalOpen(false)} title="Получить расчёт" />
       </section>
     )
   }
