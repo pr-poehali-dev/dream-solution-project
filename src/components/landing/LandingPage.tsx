@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Section from './Section'
 import Layout from './Layout'
+import PortfolioSection from './PortfolioSection'
 import { sections } from './sections'
+
+const PORTFOLIO_INDEX = sections.findIndex(s => s.id === 'cta')
+const TOTAL_ITEMS = sections.length + 1
 
 export default function LandingPage() {
   const [activeSection, setActiveSection] = useState(0)
@@ -41,12 +45,18 @@ export default function LandingPage() {
     }
   }
 
+  const allItems = [
+    ...sections.slice(0, PORTFOLIO_INDEX),
+    { id: 'portfolio' },
+    ...sections.slice(PORTFOLIO_INDEX),
+  ]
+
   return (
     <Layout>
       <nav className="fixed top-0 right-0 h-screen flex flex-col justify-center z-30 p-4">
-        {sections.map((section, index) => (
+        {allItems.map((item, index) => (
           <button
-            key={section.id}
+            key={item.id}
             className={`w-2.5 h-2.5 rounded-full my-2 transition-all ${
               index === activeSection ? 'bg-[#c9a84c] scale-150' : 'bg-[#2a4060]'
             }`}
@@ -62,11 +72,21 @@ export default function LandingPage() {
         ref={containerRef}
         className="h-full overflow-y-auto snap-y snap-mandatory"
       >
-        {sections.map((section, index) => (
+        {sections.slice(0, PORTFOLIO_INDEX).map((section, index) => (
           <Section
             key={section.id}
             {...section}
             isActive={index === activeSection}
+          />
+        ))}
+
+        <PortfolioSection isActive={activeSection === PORTFOLIO_INDEX} />
+
+        {sections.slice(PORTFOLIO_INDEX).map((section, index) => (
+          <Section
+            key={section.id}
+            {...section}
+            isActive={PORTFOLIO_INDEX + 1 + index === activeSection}
           />
         ))}
       </div>
